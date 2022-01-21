@@ -40,7 +40,7 @@ func (client *Client) ReadContract(ctx context.Context, accessToken string, r Re
 		return ReadContractResponse{}, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, client.config.VenlyDefaultURL+"contracts/read", bytes.NewReader(jsonBody))
+	req, err := http.NewRequest(http.MethodPost, client.config.DefaultURL+"contracts/read", bytes.NewReader(jsonBody))
 	if err != nil {
 		return ReadContractResponse{}, err
 	}

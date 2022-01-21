@@ -52,7 +52,7 @@ func (client *Client) ExecuteContract(ctx context.Context, accessToken string, r
 		return ExecuteContractResponse{}, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, client.config.VenlyDefaultURL+"transactions/execute", bytes.NewReader(jsonBody))
+	req, err := http.NewRequest(http.MethodPost, client.config.DefaultURL+"transactions/execute", bytes.NewReader(jsonBody))
 	if err != nil {
 		return ExecuteContractResponse{}, err
 	}

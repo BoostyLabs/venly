@@ -31,7 +31,7 @@ func (client *Client) ResubmitTX(ctx context.Context, accessToken string, r Resu
 		return ResubmitTXResponse{}, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, client.config.VenlyDefaultURL+"transactions/resubmit", bytes.NewReader(jsonBody))
+	req, err := http.NewRequest(http.MethodPost, client.config.DefaultURL+"transactions/resubmit", bytes.NewReader(jsonBody))
 	if err != nil {
 		return ResubmitTXResponse{}, err
 	}

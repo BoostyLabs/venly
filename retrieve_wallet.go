@@ -44,7 +44,7 @@ type RetrieveWalletResponse struct {
 
 // RetrieveWallet retrieves Venly wallet.
 func (client *Client) RetrieveWallet(ctx context.Context, accessToken string, r RetrieveWalletRequest) (response RetrieveWalletResponse, err error) {
-	req, err := http.NewRequest(http.MethodGet, client.config.VenlyDefaultURL+"wallets/"+r.WalletID, nil)
+	req, err := http.NewRequest(http.MethodGet, client.config.DefaultURL+"wallets/"+r.WalletID, nil)
 	if err != nil {
 		return RetrieveWalletResponse{}, err
 	}

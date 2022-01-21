@@ -54,7 +54,7 @@ func (client *Client) CreateWallet(ctx context.Context, accessToken string, wall
 		return CreateWalletResponse{}, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, client.config.VenlyDefaultURL+"wallets", bytes.NewReader(jsonBody))
+	req, err := http.NewRequest(http.MethodPost, client.config.DefaultURL+"wallets", bytes.NewReader(jsonBody))
 	if err != nil {
 		return CreateWalletResponse{}, err
 	}

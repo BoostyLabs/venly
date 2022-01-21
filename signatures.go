@@ -36,7 +36,7 @@ func (client *Client) Signatures(ctx context.Context, accessToken string, r Sign
 		return SignaturesResponse{}, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, client.config.VenlyDefaultURL+"signatures", bytes.NewReader(jsonBody))
+	req, err := http.NewRequest(http.MethodPost, client.config.DefaultURL+"signatures", bytes.NewReader(jsonBody))
 	if err != nil {
 		return SignaturesResponse{}, err
 	}

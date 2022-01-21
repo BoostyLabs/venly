@@ -38,7 +38,7 @@ func (client *Client) TransferFungible(ctx context.Context, accessToken string, 
 		return TransferFungibleResponse{}, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, client.config.VenlyDefaultURL+"transactions/execute", bytes.NewReader(jsonBody))
+	req, err := http.NewRequest(http.MethodPost, client.config.DefaultURL+"transactions/execute", bytes.NewReader(jsonBody))
 	if err != nil {
 		return TransferFungibleResponse{}, err
 	}

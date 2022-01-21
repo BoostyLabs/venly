@@ -40,7 +40,7 @@ type GetTXStatusResponse struct {
 
 // GetTXStatus retrieves tx status.
 func (client *Client) GetTXStatus(ctx context.Context, accessToken string, r GetTXStatusRequest) (response GetTXStatusResponse, err error) {
-	req, err := http.NewRequest(http.MethodGet, client.config.VenlyDefaultURL+"transactions/"+r.SecretType+"/"+r.TXHash+"/status", nil)
+	req, err := http.NewRequest(http.MethodGet, client.config.DefaultURL+"transactions/"+r.SecretType+"/"+r.TXHash+"/status", nil)
 	if err != nil {
 		return GetTXStatusResponse{}, err
 	}

@@ -6,8 +6,8 @@ import (
 
 // Config is the global configuration for Venly client.
 type Config struct {
-	VenlyDefaultURL string `json:"venlyDefaultURL" default:"https://api.arkane.network/api/"`
-	VenlyAuthURL    string `json:"venlyAuthURL" default:"https://login-staging.arkane.network/auth/realms/Arkane/protocol/openid-connect/token"`
+	DefaultURL string `json:"venlyDefaultURL" default:"https://api.arkane.network/api/"`
+	AuthURL    string `json:"venlyAuthURL" default:"https://login-staging.arkane.network/auth/realms/Arkane/protocol/openid-connect/token"`
 }
 
 // Client implementation of the Venly API.

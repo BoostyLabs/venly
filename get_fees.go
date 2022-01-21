@@ -39,7 +39,7 @@ type GetFeesResponse struct {
 
 // GetFees retrieves fees.
 func (client *Client) GetFees(ctx context.Context, accessToken string, r GetFeesRequest) (response GetFeesResponse, err error) {
-	req, err := http.NewRequest(http.MethodGet, client.config.VenlyDefaultURL+"transactions/"+r.SecretType+"/fees", nil)
+	req, err := http.NewRequest(http.MethodGet, client.config.DefaultURL+"transactions/"+r.SecretType+"/fees", nil)
 	if err != nil {
 		return GetFeesResponse{}, err
 	}

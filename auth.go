@@ -35,7 +35,7 @@ func (client *Client) Auth(ctx context.Context, auth AuthRequest) (response Auth
 	data.Add("grant_type", auth.GrantType)
 	encodedData := data.Encode()
 
-	req, err := http.NewRequest(http.MethodPost, client.config.VenlyAuthURL, strings.NewReader(encodedData))
+	req, err := http.NewRequest(http.MethodPost, client.config.AuthURL, strings.NewReader(encodedData))
 	if err != nil {
 		return AuthResponse{}, err
 	}
