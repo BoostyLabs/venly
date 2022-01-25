@@ -43,8 +43,8 @@ type CreateWalletResponse struct {
 			GasBalance    float64 `json:"gasBalance"`
 			Symbol        string  `json:"symbol"`
 			GasSymbol     string  `json:"gasSymbol"`
-			RawBalance    float64 `json:"rawBalance"`
-			RawGasBalance float64 `json:"rawGasBalance"`
+			RawBalance    string  `json:"rawBalance"`
+			RawGasBalance string  `json:"rawGasBalance"`
 			Decimals      int     `json:"decimals"`
 		} `json:"balance"`
 	} `json:"result"`
@@ -62,8 +62,10 @@ func (client *Client) CreateWallet(ctx context.Context, accessToken string, wall
 		return CreateWalletResponse{}, err
 	}
 
+	var bearer = "Bearer " + accessToken
+
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Add("Authorization", accessToken)
+	req.Header.Add("Authorization", bearer)
 
 	resp, err := client.http.Do(req.WithContext(ctx))
 	if err != nil {
