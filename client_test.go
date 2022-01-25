@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"venly"
+	"github.com/BoostyLabs/venly"
 )
 
 func TestNew(t *testing.T) {
