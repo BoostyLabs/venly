@@ -14,22 +14,28 @@ import (
 
 // SignaturesRequest fields that required for signatures request.
 type SignaturesRequest struct {
-	Pincode          string `json:"pincode"`
-	SignatureRequest struct {
-		Type       string `json:"type"`
-		SecretType string `json:"secretType"`
-		WalletID   string `json:"walletId"`
-		Data       string `json:"data"`
-	} `json:"signatureRequest"`
+	Pincode          string           `json:"pincode"`
+	SignatureRequest SignatureRequest `json:"signatureRequest"`
+}
+
+// SignatureRequest struct.
+type SignatureRequest struct {
+	Type       string `json:"type"`
+	SecretType string `json:"secretType"`
+	WalletID   string `json:"walletId"`
+	Data       string `json:"data"`
 }
 
 // SignaturesResponse fields that returns from signatures.
 type SignaturesResponse struct {
-	Type      string `json:"type"`
-	R         string `json:"r"`
-	S         string `json:"s"`
-	V         string `json:"v"`
-	Signature string `json:"signature"`
+	Success bool `json:"success"`
+	Result  struct {
+		Type      string `json:"type"`
+		R         string `json:"r"`
+		S         string `json:"s"`
+		V         string `json:"v"`
+		Signature string `json:"signature"`
+	} `json:"result"`
 }
 
 // Signatures calls signatures Venly api endpoint.

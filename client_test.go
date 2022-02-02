@@ -22,14 +22,34 @@ func TestNew(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	_, err = client.CreateWallet(context.Background(), resp.AccessToken, venly.CreateWalletRequest{
+	client2 := venly.NewClient(venly.Config{
+		DefaultURL: "https://api-staging.arkane.network/api/",
+		AuthURL:    "https://login-staging.arkane.network/auth/realms/Arkane/protocol/openid-connect/token",
+	})
+
+	rr, err := client2.CreateWallet(context.Background(), resp.AccessToken, venly.CreateWalletRequest{
 		WalletType:  "WHITE_LABEL",
 		SecretType:  "ETHEREUM",
 		Identifier:  "type=unrecoverable",
-		Description: "wtf123",
-		Pincode:     "1488",
+		Description: "wtf1233",
+		Pincode:     "14328",
 	})
 	if err != nil {
 		t.Fatal(err)
 	}
+	println(rr.Result.ID)
+
+	r2, err := client2.Signatures(context.Background(), resp.AccessToken, venly.SignaturesRequest{
+		Pincode:          "14328",
+		SignatureRequest: venly.SignatureRequest{
+			Type:       "MESSAGE",
+			SecretType: "ETHEREUM",
+			WalletID:   rr.Result.ID,
+			Data:       "I agree with terms and conditions",
+		},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	println(r2.Result.Type)
 }
