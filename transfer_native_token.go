@@ -14,15 +14,18 @@ import (
 
 // TransferNativeRequest fields that required for transfer native request.
 type TransferNativeRequest struct {
-	TransactionRequest struct {
-		Type       string `json:"type"`
-		WalletID   string `json:"walletId"`
-		To         string `json:"to"`
-		SecretType string `json:"secretType"`
-		Value      int    `json:"value"`
-		Data       string `json:"data"`
-	} `json:"transactionRequest"`
-	Pincode string `json:"pincode"`
+	TransactionRequest TxRequest `json:"transactionRequest"`
+	Pincode            string    `json:"pincode"`
+}
+
+// TxRequest struct ...
+type TxRequest struct {
+	Type       string  `json:"type"`
+	WalletID   string  `json:"walletId"`
+	To         string  `json:"to"`
+	SecretType string  `json:"secretType"`
+	Value      float64 `json:"value"`
+	Data       string  `json:"data"`
 }
 
 // TransferNativeResponse fields that returns from transfer native.
