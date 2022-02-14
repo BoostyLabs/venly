@@ -80,4 +80,10 @@ func TestNew(t *testing.T) {
 		t.Fatal(err)
 	}
 	println(dd.Result.Balance)
+
+	dd2, err := client.GetFees(context.Background(), resp.AccessToken, venly.GetFeesRequest{SecretType: "ETHEREUM"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	println(dd2.Result[0].GasPrice)
 }

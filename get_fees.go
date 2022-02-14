@@ -19,24 +19,9 @@ type GetFeesRequest struct {
 // GetFeesResponse fields that returns from get fees.
 type GetFeesResponse struct {
 	Success bool `json:"success"`
-	Result  struct {
-		Hash          string `json:"hash"`
-		Status        string `json:"status"`
-		Confirmations int    `json:"confirmations"`
-		BlockHash     string `json:"blockHash"`
-		BlockNumber   int    `json:"blockNumber"`
-		Nonce         int    `json:"nonce"`
-		Gas           int    `json:"gas"`
-		GasUsed       int    `json:"gasUsed"`
-		GasPrice      int64  `json:"gasPrice"`
-		Logs          []struct {
-			LogIndex int         `json:"logIndex"`
-			Data     string      `json:"data"`
-			Type     interface{} `json:"type"`
-			Topics   []string    `json:"topics"`
-		} `json:"logs"`
-		From string `json:"from"`
-		To   string `json:"to"`
+	Result  []struct {
+		GasPrice     int64 `json:"gasPrice"`
+		DefaultPrice bool  `json:"defaultPrice"`
 	} `json:"result"`
 }
 
