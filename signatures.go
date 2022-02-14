@@ -16,10 +16,10 @@ import (
 type SignaturesRequest struct {
 	Pincode          string `json:"pincode"`
 	SignatureRequest struct {
-		Type       string `json:"type"`
-		SecretType string `json:"secretType"`
-		WalletID   string `json:"walletId"`
-		Data       string `json:"data"`
+		Type       string      `json:"type"`
+		SecretType string      `json:"secretType"`
+		WalletID   string      `json:"walletId"`
+		Data       interface{} `json:"data"`
 	} `json:"signatureRequest"`
 }
 
