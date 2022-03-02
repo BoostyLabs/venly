@@ -65,7 +65,11 @@ func (client *Client) TransferFungible(ctx context.Context, accessToken string, 
 			return TransferFungibleResponse{}, err
 		}
 
-		return TransferFungibleResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return TransferFungibleResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return TransferFungibleResponse{}, errs.New(resp.Status)
 	}
 
 	var transferFungibleResponse TransferFungibleResponse

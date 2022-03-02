@@ -67,7 +67,11 @@ func (client *Client) GetTXStatus(ctx context.Context, accessToken string, r Get
 			return GetTXStatusResponse{}, err
 		}
 
-		return GetTXStatusResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return GetTXStatusResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return GetTXStatusResponse{}, errs.New(resp.Status)
 	}
 
 	var getTXStatusResponse GetTXStatusResponse

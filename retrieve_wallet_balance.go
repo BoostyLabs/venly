@@ -58,7 +58,11 @@ func (client *Client) RetrieveWalletBalance(ctx context.Context, accessToken str
 			return RetrieveWalletBalanceResponse{}, err
 		}
 
-		return RetrieveWalletBalanceResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return RetrieveWalletBalanceResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return RetrieveWalletBalanceResponse{}, errs.New(resp.Status)
 	}
 
 	var retrieveWalletBalanceResponse RetrieveWalletBalanceResponse

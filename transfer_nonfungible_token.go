@@ -64,7 +64,11 @@ func (client *Client) TransferNonFungible(ctx context.Context, accessToken strin
 			return TransferNonFungibleResponse{}, err
 		}
 
-		return TransferNonFungibleResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return TransferNonFungibleResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return TransferNonFungibleResponse{}, errs.New(resp.Status)
 	}
 
 	var transferNonFungibleResponse TransferNonFungibleResponse

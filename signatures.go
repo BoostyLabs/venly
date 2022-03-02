@@ -69,7 +69,11 @@ func (client *Client) Signatures(ctx context.Context, accessToken string, r Sign
 			return SignaturesResponse{}, err
 		}
 
-		return SignaturesResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return SignaturesResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return SignaturesResponse{}, errs.New(resp.Status)
 	}
 
 	var signaturesResponse SignaturesResponse

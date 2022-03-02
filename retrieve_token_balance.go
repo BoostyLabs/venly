@@ -57,7 +57,11 @@ func (client *Client) RetrieveTokenBalance(ctx context.Context, accessToken stri
 			return RetrieveTokenBalanceResponse{}, err
 		}
 
-		return RetrieveTokenBalanceResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return RetrieveTokenBalanceResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return RetrieveTokenBalanceResponse{}, errs.New(resp.Status)
 	}
 
 	var retrieveTokenBalanceResponse RetrieveTokenBalanceResponse

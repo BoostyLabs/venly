@@ -79,7 +79,11 @@ func (client *Client) ExecuteContract(ctx context.Context, accessToken string, r
 			return ExecuteContractResponse{}, err
 		}
 
-		return ExecuteContractResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return ExecuteContractResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return ExecuteContractResponse{}, errs.New(resp.Status)
 	}
 
 	var executeContractResponse ExecuteContractResponse

@@ -60,7 +60,11 @@ func (client *Client) Auth(ctx context.Context, auth AuthRequest) (response Auth
 			return AuthResponse{}, err
 		}
 
-		return AuthResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return AuthResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return AuthResponse{}, errs.New(resp.Status)
 	}
 
 	var authResponse AuthResponse

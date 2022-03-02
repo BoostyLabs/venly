@@ -51,7 +51,11 @@ func (client *Client) GetFees(ctx context.Context, accessToken string, r GetFees
 			return GetFeesResponse{}, err
 		}
 
-		return GetFeesResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return GetFeesResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return GetFeesResponse{}, errs.New(resp.Status)
 	}
 
 	var getFeesResponse GetFeesResponse

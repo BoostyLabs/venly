@@ -83,7 +83,11 @@ func (client *Client) CreateWallet(ctx context.Context, accessToken string, wall
 			return CreateWalletResponse{}, err
 		}
 
-		return CreateWalletResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return CreateWalletResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return CreateWalletResponse{}, errs.New(resp.Status)
 	}
 
 	var createWalletResponse CreateWalletResponse

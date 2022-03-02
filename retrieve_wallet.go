@@ -71,7 +71,11 @@ func (client *Client) RetrieveWallet(ctx context.Context, accessToken string, r 
 			return RetrieveWalletResponse{}, err
 		}
 
-		return RetrieveWalletResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return RetrieveWalletResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return RetrieveWalletResponse{}, errs.New(resp.Status)
 	}
 
 	var retrieveWalletResponse RetrieveWalletResponse

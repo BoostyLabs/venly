@@ -67,7 +67,11 @@ func (client *Client) ReadContract(ctx context.Context, accessToken string, r Re
 			return ReadContractResponse{}, err
 		}
 
-		return ReadContractResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return ReadContractResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return ReadContractResponse{}, errs.New(resp.Status)
 	}
 
 	var readContractResponse ReadContractResponse

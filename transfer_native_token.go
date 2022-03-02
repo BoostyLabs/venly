@@ -67,7 +67,11 @@ func (client *Client) TransferNative(ctx context.Context, accessToken string, r 
 			return TransferNativeResponse{}, err
 		}
 
-		return TransferNativeResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return TransferNativeResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return TransferNativeResponse{}, errs.New(resp.Status)
 	}
 
 	var transferNativeResponse TransferNativeResponse

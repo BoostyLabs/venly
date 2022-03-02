@@ -58,7 +58,11 @@ func (client *Client) ResubmitTX(ctx context.Context, accessToken string, r Resu
 			return ResubmitTXResponse{}, err
 		}
 
-		return ResubmitTXResponse{}, errs.New(errorResp.Errors[0].Code)
+		if !errorResp.Success {
+			return ResubmitTXResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return ResubmitTXResponse{}, errs.New(resp.Status)
 	}
 
 	var resubmitTXResponse ResubmitTXResponse
