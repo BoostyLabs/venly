@@ -53,3 +53,52 @@ func (mock *Mock) TransferFungible(ctx context.Context, accessToken string, r ve
 		Success: true,
 	}, nil
 }
+
+// ExecuteContract executes contract call.
+func (mock *Mock) ExecuteContract(ctx context.Context, accessToken string, r venly.ExecuteContractRequest) (response venly.ExecuteContractResponse, err error) {
+	return venly.ExecuteContractResponse{
+		TransactionHash: "true",
+	}, nil
+}
+
+// GetFees retrieves fees.
+func (mock *Mock) GetFees(ctx context.Context, accessToken string, r venly.GetFeesRequest) (response venly.GetFeesResponse, err error) {
+	return venly.GetFeesResponse{
+		Success: true,
+	}, nil
+}
+
+// GetTXStatus retrieves tx status.
+func (mock *Mock) GetTXStatus(ctx context.Context, accessToken string, r venly.GetTXStatusRequest) (response venly.GetTXStatusResponse, err error) {
+	return venly.GetTXStatusResponse{
+		Success: true,
+	}, nil
+}
+
+// ReadContract reads contract.
+func (mock *Mock) ReadContract(ctx context.Context, accessToken string, r venly.ReadContractRequest) (response venly.ReadContractResponse, err error) {
+	return venly.ReadContractResponse{
+		Success: true,
+	}, nil
+}
+
+// ResubmitTX resubmits transaction.
+func (mock *Mock) ResubmitTX(ctx context.Context, accessToken string, r venly.ResubmitTXRequest) (response venly.ResubmitTXResponse, err error) {
+	return venly.ResubmitTXResponse{
+		Success: true,
+	}, nil
+}
+
+// Signatures calls signatures Venly api endpoint.
+func (mock *Mock) Signatures(ctx context.Context, accessToken string, r venly.SignaturesRequest) (response venly.SignaturesResponse, err error) {
+	return venly.SignaturesResponse{
+		Success: true,
+	}, nil
+}
+
+// TransferNonFungible transfers non-fungible token via Venly.
+func (mock *Mock) TransferNonFungible(ctx context.Context, accessToken string, r venly.TransferNonFungibleRequest) (response venly.TransferNonFungibleResponse, err error) {
+	return venly.TransferNonFungibleResponse{
+		Success: true,
+	}, nil
+}
