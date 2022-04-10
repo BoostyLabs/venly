@@ -7,6 +7,8 @@ import (
 	"net/http"
 )
 
+var _ Venly = (*Client)(nil)
+
 // Config is the global configuration for Venly client.
 type Config struct {
 	DefaultURL string `json:"venlyDefaultURL" default:"https://api.arkane.network/api/"`
