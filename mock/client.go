@@ -9,6 +9,8 @@ import (
 	"github.com/BoostyLabs/venly"
 )
 
+var _ venly.Venly = (*Mock)(nil)
+
 // Mock mocked struct for venly wallet.
 type Mock struct{}
 
