@@ -16,7 +16,7 @@ type RetrieveTokenBalanceRequest struct {
 	WalletID string `json:"wallet_id"`
 }
 
-// RetrieveTokenBalanceResult struct ...
+// RetrieveTokenBalanceResult fields that describes result from retrieve token balance.
 type RetrieveTokenBalanceResult struct {
 	TokenAddress string  `json:"tokenAddress"`
 	RawBalance   string  `json:"rawBalance"`
