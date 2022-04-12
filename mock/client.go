@@ -37,6 +37,16 @@ func (mock *Mock) RetrieveWalletBalance(ctx context.Context, accessToken string,
 func (mock *Mock) RetrieveTokenBalance(ctx context.Context, accessToken string, r venly.RetrieveTokenBalanceRequest) (venly.RetrieveTokenBalanceResponse, error) {
 	return venly.RetrieveTokenBalanceResponse{
 		Success: true,
+		Result: []venly.RetrieveTokenBalanceResult{{
+			TokenAddress: "",
+			RawBalance:   "",
+			Balance:      0,
+			Decimals:     0,
+			Symbol:       "WETH",
+			Logo:         "",
+			Type:         "",
+			Transferable: true,
+		}},
 	}, nil
 }
 

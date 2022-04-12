@@ -16,19 +16,22 @@ type RetrieveTokenBalanceRequest struct {
 	WalletID string `json:"wallet_id"`
 }
 
+// RetrieveTokenBalanceResult struct ...
+type RetrieveTokenBalanceResult struct {
+	TokenAddress string  `json:"tokenAddress"`
+	RawBalance   string  `json:"rawBalance"`
+	Balance      float64 `json:"balance"`
+	Decimals     int     `json:"decimals"`
+	Symbol       string  `json:"symbol"`
+	Logo         string  `json:"logo"`
+	Type         string  `json:"type"`
+	Transferable bool    `json:"transferable"`
+}
+
 // RetrieveTokenBalanceResponse fields that returns from retrieve token balance.
 type RetrieveTokenBalanceResponse struct {
-	Success bool `json:"success"`
-	Result  []struct {
-		TokenAddress string  `json:"tokenAddress"`
-		RawBalance   string  `json:"rawBalance"`
-		Balance      float64 `json:"balance"`
-		Decimals     int     `json:"decimals"`
-		Symbol       string  `json:"symbol"`
-		Logo         string  `json:"logo"`
-		Type         string  `json:"type"`
-		Transferable bool    `json:"transferable"`
-	} `json:"result"`
+	Success bool                         `json:"success"`
+	Result  []RetrieveTokenBalanceResult `json:"result"`
 }
 
 // RetrieveTokenBalance retrieves Venly token balance.
