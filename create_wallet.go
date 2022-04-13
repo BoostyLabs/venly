@@ -21,33 +21,39 @@ type CreateWalletRequest struct {
 	Pincode     string `json:"pincode"`
 }
 
+// Balance struct ...
+type Balance struct {
+	Available     bool    `json:"available"`
+	SecretType    string  `json:"secretType"`
+	Balance       float64 `json:"balance"`
+	GasBalance    float64 `json:"gasBalance"`
+	Symbol        string  `json:"symbol"`
+	GasSymbol     string  `json:"gasSymbol"`
+	RawBalance    string  `json:"rawBalance"`
+	RawGasBalance string  `json:"rawGasBalance"`
+	Decimals      int     `json:"decimals"`
+}
+
+// CreateWalletResult struct ...
+type CreateWalletResult struct {
+	ID           string  `json:"id"`
+	Address      string  `json:"address"`
+	WalletType   string  `json:"walletType"`
+	SecretType   string  `json:"secretType"`
+	CreatedAt    string  `json:"createdAt"`
+	Archived     bool    `json:"archived"`
+	Alias        string  `json:"alias"`
+	Description  string  `json:"description"`
+	Primary      bool    `json:"primary"`
+	HasCustomPin bool    `json:"hasCustomPin"`
+	Identifier   string  `json:"identifier"`
+	Balance      Balance `json:"balance"`
+}
+
 // CreateWalletResponse fields that returns from create wallet.
 type CreateWalletResponse struct {
-	Success bool `json:"success"`
-	Result  struct {
-		ID           string `json:"id"`
-		Address      string `json:"address"`
-		WalletType   string `json:"walletType"`
-		SecretType   string `json:"secretType"`
-		CreatedAt    string `json:"createdAt"`
-		Archived     bool   `json:"archived"`
-		Alias        string `json:"alias"`
-		Description  string `json:"description"`
-		Primary      bool   `json:"primary"`
-		HasCustomPin bool   `json:"hasCustomPin"`
-		Identifier   string `json:"identifier"`
-		Balance      struct {
-			Available     bool    `json:"available"`
-			SecretType    string  `json:"secretType"`
-			Balance       float64 `json:"balance"`
-			GasBalance    float64 `json:"gasBalance"`
-			Symbol        string  `json:"symbol"`
-			GasSymbol     string  `json:"gasSymbol"`
-			RawBalance    string  `json:"rawBalance"`
-			RawGasBalance string  `json:"rawGasBalance"`
-			Decimals      int     `json:"decimals"`
-		} `json:"balance"`
-	} `json:"result"`
+	Success bool               `json:"success"`
+	Result  CreateWalletResult `json:"result"`
 }
 
 // CreateWallet creates Venly wallet.
