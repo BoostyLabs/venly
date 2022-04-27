@@ -85,3 +85,44 @@ func (client *Client) RetrieveWallet(ctx context.Context, accessToken string, r 
 
 	return retrieveWalletResponse, nil
 }
+
+// RetrieveWallets retrieves Venly wallets.
+func (client *Client) RetrieveWallets(ctx context.Context, accessToken string) (response RetrieveWalletResponse, err error) {
+	req, err := http.NewRequest(http.MethodGet, client.config.DefaultURL+"wallets", nil)
+	if err != nil {
+		return RetrieveWalletResponse{}, err
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Add("Authorization", "Bearer "+accessToken)
+
+	resp, err := client.http.Do(req.WithContext(ctx))
+	if err != nil {
+		return RetrieveWalletResponse{}, err
+	}
+
+	defer func() {
+		err = errs.Combine(err, resp.Body.Close())
+	}()
+
+	if resp.StatusCode != http.StatusOK {
+		errorResp := ErrorResponse{}
+
+		if err = json.NewDecoder(resp.Body).Decode(&errorResp); err != nil {
+			return RetrieveWalletResponse{}, err
+		}
+
+		if !errorResp.Success {
+			return RetrieveWalletResponse{}, errs.New(errorResp.Errors[0].Code)
+		}
+
+		return RetrieveWalletResponse{}, errs.New(resp.Status)
+	}
+
+	var retrieveWalletResponse RetrieveWalletResponse
+	if err = json.NewDecoder(resp.Body).Decode(&retrieveWalletResponse); err != nil {
+		return RetrieveWalletResponse{}, err
+	}
+
+	return retrieveWalletResponse, nil
+}
