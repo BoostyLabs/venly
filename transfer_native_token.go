@@ -36,6 +36,9 @@ type TransferNativeResponse struct {
 	} `json:"result"`
 }
 
+// TransferType indicates that type required for transfer token.
+const TransferType string = "TRANSFER"
+
 // TransferNative transfers native token via Venly.
 func (client *Client) TransferNative(ctx context.Context, accessToken string, r TransferNativeRequest) (response TransferNativeResponse, err error) {
 	jsonBody, err := json.Marshal(r)
