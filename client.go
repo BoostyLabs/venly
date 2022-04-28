@@ -32,6 +32,6 @@ type ErrorResponse struct {
 	Errors  []struct {
 		Code      string      `json:"code"`
 		TraceCode interface{} `json:"traceCode"`
-		Message   interface{} `json:"message"`
+		Message   string      `json:"message"`
 	} `json:"errors"`
 }
