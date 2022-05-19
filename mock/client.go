@@ -114,3 +114,17 @@ func (mock *Mock) TransferNonFungible(ctx context.Context, accessToken string, r
 		Success: true,
 	}, nil
 }
+
+// RetrieveBalanceByWalletAddress mocks method to retrieve balance by wallet address and secret type.
+func (mock *Mock) RetrieveBalanceByWalletAddress(ctx context.Context, accessToken string, r venly.BalanceRequest) (response venly.RetrieveWalletBalanceResponse, err error) {
+	return venly.RetrieveWalletBalanceResponse{
+		Success: true,
+	}, nil
+}
+
+// RetrieveWallets mocks method to retrieves Venly wallets.
+func (mock *Mock) RetrieveWallets(ctx context.Context, accessToken string) (response venly.RetrieveWalletResponse, err error) {
+	return venly.RetrieveWalletResponse{
+		Success: true,
+	}, nil
+}

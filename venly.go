@@ -29,4 +29,8 @@ type Venly interface {
 	ResubmitTX(ctx context.Context, accessToken string, r ResubmitTXRequest) (response ResubmitTXResponse, err error)
 	// Signatures calls signatures Venly api endpoint.
 	Signatures(ctx context.Context, accessToken string, r SignaturesRequest) (response SignaturesResponse, err error)
+	// RetrieveBalanceByWalletAddress retrieves balance by wallet address and secret type.
+	RetrieveBalanceByWalletAddress(ctx context.Context, accessToken string, r BalanceRequest) (response RetrieveWalletBalanceResponse, err error)
+	// RetrieveWallets retrieves Venly wallets.
+	RetrieveWallets(ctx context.Context, accessToken string) (response RetrieveWalletResponse, err error)
 }
