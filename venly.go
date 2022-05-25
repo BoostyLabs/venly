@@ -17,6 +17,8 @@ type Venly interface {
 	TransferNative(ctx context.Context, accessToken string, r TransferNativeRequest) (TransferNativeResponse, error)
 	// TransferFungible mocks method to transfer fungible tokens.
 	TransferFungible(ctx context.Context, accessToken string, r TransferFungibleRequest) (TransferFungibleResponse, error)
+	// TransferNonFungible transfers non-fungible token via Venly.
+	TransferNonFungible(ctx context.Context, accessToken string, r TransferNonFungibleRequest) (TransferNonFungibleResponse, error)
 	// ExecuteContract executes contract call.
 	ExecuteContract(ctx context.Context, accessToken string, r ExecuteContractRequest) (response ExecuteContractResponse, err error)
 	// GetFees retrieves fees.
